@@ -14,7 +14,7 @@
 	* [5.CSS盒子模型](css笔记/盒子模型.md)
 	* [6.CSS浮动](css笔记/浮动.md)
 	* [7.CSS背景色](css笔记/背景.md)
-	* [8.CSS书写位置](css笔记/CSS书写位置.md)
+	* [8.CSS书写位置](css笔记/CSS的书写位置.md)
 	* [9.CSS图片相关](css笔记/图片相关的.md)
 	* [10.CSS层叠属性](css笔记/层叠属性.md)
 * [第三章 js笔记](js笔记/第三章JavaScript笔记.md)		
