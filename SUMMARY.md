@@ -6,7 +6,7 @@
 	* [2.简单使用](docs/简单使用.md)
 		* [2.1语法](docs/语法.md)
 		* [2.2高级](docs/高级.md)
-* [第二章 CSS笔记](gitBook的使用.md)
+* [第二章 CSS笔记](css笔记/CSS笔记.md)
 	* [1.CSS选择器](css笔记/CSS笔记--选择器.md)
 	* [2.CSS文本属性](css笔记/CSS笔记--文本属性.md)
 	* [3.CSS案例讲解](css笔记/CSS笔记--案例讲解.md)
