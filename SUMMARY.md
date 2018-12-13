@@ -21,8 +21,8 @@
 	* [1.JSON](js笔记/JSON.md)
 	* [2.dom](js笔记/dom.md)
 	* [3.js介绍](js笔记/js介绍.md)
-	* [4.js基础一](s笔记/js基础一.md)
-	* [5.dom](s笔记/dom.md)
+	* [4.js基础一](js笔记/js基础一.md)
+	* [5.dom](js笔记/dom.md)
 * [markdown的基本使用](基本使用.md)
 * [结束](结束.md)
 09:10:27
