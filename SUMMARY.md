@@ -8,7 +8,7 @@
 		* [2.2高级](docs/高级.md)
 * [第二章 CSS笔记](css笔记/CSS笔记.md)
 	* [1.CSS选择器](css笔记/CSS笔记--选择器.md)
-	* [2.CSS文本属性](css笔记/CSS笔记--文本属性.md)
+	* [2.CSS文本属性](css笔记/CSS 笔记--文本属性.md)
 	* [3.CSS案例讲解](css笔记/CSS笔记--案例讲解.md)
 	* [4.CSS块和行内块](css笔记/块和行内块.md)
 	* [5.CSS盒子模型](css笔记/盒子模型.md)
