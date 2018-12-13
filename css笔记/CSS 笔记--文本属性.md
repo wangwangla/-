@@ -1,5 +1,5 @@
 ---
-title: CSS 笔记--文本属性
+title: CSS笔记--文本属性
 user: 见贤思齐
 date: 2018-12-12
 ---
