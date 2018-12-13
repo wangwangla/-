@@ -12,13 +12,18 @@
 	* [3.CSS案例讲解](css笔记/CSS笔记--案例讲解.md)
 	* [4.CSS块和行内块](css笔记/块和行内块.md)
 	* [5.CSS盒子模型](css笔记/盒子模型.md)
-	* [5.CSS浮动](css笔记/浮动.md)
-	* [5.CSS背景色](css笔记/背景.md)
-	* [5.CSS书写位置](css笔记/CSS书写位置.md)
-	* [5.CSS图片相关](css笔记/图片相关的.md)
-	* [5.CSS层叠属性](css笔记/层叠属性.md)
-* [第二章 js笔记](js笔记/js笔记.md)			
-	
+	* [6.CSS浮动](css笔记/浮动.md)
+	* [7.CSS背景色](css笔记/背景.md)
+	* [8.CSS书写位置](css笔记/CSS书写位置.md)
+	* [9.CSS图片相关](css笔记/图片相关的.md)
+	* [10.CSS层叠属性](css笔记/层叠属性.md)
+* [第三章 js笔记](js笔记/第三章JavaScript笔记.md)		
+	* [1.JSON](js笔记/JSON.md)
+	* [2.dom](js笔记/dom.md)
+	* [3.js介绍](js笔记/js介绍.md)
+	* [4.js基础一](s笔记/js基础一.md)
+	* [5.dom](s笔记/dom.md)
+
 
 
 * [结束](结束.md)
