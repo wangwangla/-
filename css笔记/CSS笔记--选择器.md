@@ -162,3 +162,4 @@ p>span{
 	background-color: green;
 }
 ```
+#### 选择器的优先级
