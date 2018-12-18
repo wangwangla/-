@@ -1,0 +1,193 @@
+---
+title: 8.Express框架
+user: 见贤思齐
+date: 2018-12-17
+---
+Express框架是后台的Node框架，所以和jQuery、zepto、yui、bootstrap都不一个东西。
+Express在后台的受欢迎的程度，和jQuery一样，就是企业的事实上的标准。
+
+英语官网：http://expressjs.com/
+中文官网：http://www.expressjs.com.cn/
+
+安装Express框架，就是使用npm的命令。
+1npm install --save express
+![enter description here](./images/1545010573198.png)
+--save参数，表示自动修改package.json文件，自动添加依赖项
+
+**路由能力**
+```
+var express = require("express");
+var app = express();
+app.get("/",function(req,res){
+    res.send("你好");
+});
+
+app.get("/haha",function(req,res){
+    res.send("这是haha页面，哈哈哈哈哈哈");
+});
+
+app.get(/^\/student\/([\d]{10})$/,function(req,res){
+    res.send("学生信息，学号" + req.params[0]);
+});
+
+app.get("/teacher/:gonghao",function(req,res){
+    res.send("老师信息，工号" + req.params.gonghao);
+});
+app.listen(3000);
+```
+**静态文件伺服能力：**
+app.use(express.static("./public"));
+就可直接访问public下的页面
+eg：http://localhost:3000/sq.html
+
+**摸版引擎**
+```
+var express = require("express");
+var app = express();
+使用摸版
+app.set("view engine","ejs");
+app.get("/",function(req,res){
+	处理数据的页面，这里是数据
+    res.render("haha",{
+        "news" : ["我是小新闻啊","我也是啊","哈哈哈哈"]
+    });
+});
+app.listen(3000);
+```
+数据显示
+```
+<h1>哈哈哈哈</h1>
+ <ul>
+<% for(var i = 0 ; i < news.length ; i++){ %>
+   <li><%= news[i] %></li>
+   <% } %>
+</ul>
+```
+
+**路由**
+- get
+```
+app.get("网址",function(req,res){
+
+});
+```
+- post
+```
+app.post("网址",function(req,res){
+});
+```
+- 如果想处理这个网址的任何method的请求，那么写all
+```
+app.all("/",function(){
+
+});
+```
+**所有的GET参数，? 后面的都已经被忽略。 锚点#也被忽略
+你路由到/a ， 实际/a?id=2&sex=nan 也能被处理。**
+
+正则表达式可以被使用。正则表达式中，未知部分用圆括号分组，然后可以用req.params[0]、[1]得到,req.params类数组对象
+```
+app.get(/^\/student\/([\d]{10})$/,function(req,res){
+    res.send("学生信息，学号" + req.params[0]);
+});
+
+```
+**获取参数**
+```
+- url :/student/:id    var id = req.params["id"];
+- "/:username/:oid"   var username = req.params["username"];   
+ 	var oid = req.params["oid"];
+```
+**页面跳转**
+```
+res.render("form");
+```
+
+
+**冒号是更推荐的写法**
+```
+app.get("/student/:id",function(req,res){
+    var id = req.params["id"];
+    var reg= /^[\d]{6}$/;   //正则验证
+    if(reg.test(id)){
+        res.send(id);
+    }else{
+        res.send("请检查格式");
+    }
+});
+```
+**如果我的的get、post回调函数中，没有next参数，那么就匹配上第一个路由，就不会往下匹配了。**
+```
+app.get("/",function(req,res,next){
+    console.log("1");
+    next();
+});
+app.get("/",function(req,res){
+    console.log("2");
+});
+```
+网页计数
+-
+```
+/**
+ * Created by Danny on 2015/9/22 10:47.
+ */
+var http = require("http");
+
+// 这个语句，就在打开服务器的时候，执行一次。
+// 每次用户访问的时候，不执行这个语句
+var a = 100;
+
+var server = http.createServer(function(req,res){
+    // 用户访问的时候，执行这里的语句：
+    a++;
+    res.end(a.toString());
+});
+
+server.listen(3000,"127.0.0.1");
+```
+**冲突的路由**
+```
+app.get("/:username/:id",function(req,res){
+    console.log("1");
+    res.send("用户信息" + req.params.username);
+});
+
+app.get("/admin/login",function(req,res){
+    console.log("2");
+    res.send("管理员登录");
+});
+```
+因为想要得到的是管理员登录的结果，所以这个时候，并不会得到正确的结果，解决方法
+- 调换他们的位置
+- 使用next
+**use**
+```
+1app.use("/admin",function(req,res){ 
+2    res.write(req.originalUrl + "\n");   //    /admin/aa/bb/cc/dd
+3    res.write(req.baseUrl + "\n");  //   /admin
+4    res.write(req.path + "\n");   //    /aa/bb/cc/dd
+5    res.end("你好");
+});
+```
+**如果不写路径，那么就是/**
+**设置页面文件夹**
+```
+大多数情况下，渲染内容用res.render()，将会根据views中的模板文件进行渲染。如果不想使用views文件夹，想自己设置文件夹名字，那么app.set("views","aaaa");
+如果想写一个快速测试页，当然可以使用res.send()。这个函数将根据内容，自动帮我们设置了Content-Type头部和200状态码。send()只能用一次，和end一样。和end不一样在哪里？能够自动设置MIME类型。
+如果想使用不同的状态码，可以：
+	res.status(404).send('Sorry, we cannot find that!');
+● 如果想使用不同的Content-Type，可以：
+	res.set('Content-Type', 'text/html');
+```
+**GET请求和POST请求的参数**
+- GET请求的参数在URL中，在原生Node中，需要使用url模块来识别参数字符串。在Express中，不需要使用url模块了。可以直接使用req.query对象。
+-  POST请求在express中不能直接获得，必须使用body-parser模块。使用后，将可以用req.body得到参数。但是如果表单中含有文件上传，那么还是需要使用formidable模块。
+-  Node中全是回调函数，所以我们自己封装的函数，里面如果有异步的方法，比如I/O，那么就要用回调函数的方法封装。
+```
+student.getDetailByXueHao(234234,function(detail){
+	res.render("index",{
+		"name" : detail.name
+	})
+});
+```
