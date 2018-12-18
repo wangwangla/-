@@ -8,19 +8,22 @@
 		* [2.2高级](docs/高级.md)
 * [第二章 CSS笔记](css笔记/CSS笔记.md)
 	* [1.CSS选择器](css笔记/CSS笔记--选择器.md)
-	* [2.CSS文本属性](css笔记/CSS笔记--文本属性.md)
+	* [2.CSS文本属性](css笔记/CSS 笔记--文本属性.md)
 	* [3.CSS案例讲解](css笔记/CSS笔记--案例讲解.md)
 	* [4.CSS块和行内块](css笔记/块和行内块.md)
 	* [5.CSS盒子模型](css笔记/盒子模型.md)
-	* [5.CSS浮动](css笔记/浮动.md)
-	* [5.CSS背景色](css笔记/背景.md)
-	* [5.CSS书写位置](css笔记/CSS书写位置.md)
-	* [5.CSS图片相关](css笔记/图片相关的.md)
-	* [5.CSS层叠属性](css笔记/层叠属性.md)
-* [第二章 js笔记](js笔记/js笔记.md)			
-	
-
-
+	* [6.CSS浮动](css笔记/浮动.md)
+	* [7.CSS背景色](css笔记/背景.md)
+	* [8.CSS书写位置](css笔记/CSS的书写位置.md)
+	* [9.CSS图片相关](css笔记/图片相关的.md)
+	* [10.CSS层叠属性](css笔记/层叠属性.md)
+* [第三章 js笔记](js笔记/第三章JavaScript笔记.md)		
+	* [1.JSON](js笔记/JSON.md)
+	* [2.dom](js笔记/dom.md)
+	* [3.js介绍](js笔记/js介绍.md)
+	* [4.js基础一](js笔记/js基础一.md)
+	* [5.dom](js笔记/dom.md)
+* [markdown的基本使用](基本使用.md)
 * [结束](结束.md)
 09:10:27
 
