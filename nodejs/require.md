@@ -1,6 +1,6 @@
 ---
-title: require 
-user: 5.见贤思齐
+title: 5.require 
+user: 见贤思齐
 date: 2018-12-14
 ---
 **加载文件**
