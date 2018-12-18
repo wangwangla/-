@@ -1,0 +1,252 @@
+---
+title: 7.nodejs服务器 
+user: 见贤思齐
+date: 2018-12-16
+---
+**入门第一例**
+```
+1//require表示引包，引包就是引用自己的一个特殊功能
+2var http = require("http");
+3//创建服务器，参数是一个回调函数，表示如果有请求进来，要做什么
+4var server = http.createServer(function(req,res){
+5	//req表示请求，request;  res表示响应，response
+6	//设置HTTP头部，状态码是200，文件类型是html，字符集是utf8
+7	res.writeHead(200,{"Content-type":"text/html;charset=UTF-8"});
+8	res.end("哈哈哈哈，我买了一个iPhone" + (1+2+3) + "s");
+9});
+10
+11//运行服务器，监听3000端口（端口号可以任改）
+server.listen(3000,"127.0.0.1");
+```
+- 使用步骤
+	- 引入http
+	- 创建服务器
+	- 回调函数
+	- 写请求头
+	- 返回的数据
+	- 暴露监听端口
+	
+> node 2.nodejs02.js
+浏览器输入：http://localhost:3000
+说明了node是它的一个执行环境
+
+Node.js没有根目录的概念，因为它根本没有任何的web容器！
+nodejs解析URL
+```
+//require表示引包，引包就是引用自己的一个特殊功能
+var http = require("http");
+var fs = require("fs");
+
+//创建服务器，参数是一个回调函数，表示如果有请求进来，要做什么
+var server = http.createServer(function(req,res){
+	if(req.url == "/fang"){
+		fs.readFile("./test/xixi.html",function(err,data){
+			//req表示请求，request;  res表示响应，response
+			//设置HTTP头部，状态码是200，文件类型是html，字符集是utf8
+			//res.writeHead(200,{"Content-type":"text/html;charset=UTF-8"});
+			res.end(data);
+		});
+	}else if(req.url == "/yuan"){
+		fs.readFile("./test/haha.html",function(err,data){
+			//req表示请求，request;  res表示响应，response
+			//设置HTTP头部，状态码是200，文件类型是html，字符集是utf8
+			res.writeHead(200,{"Content-type":"text/html;charset=UTF-8"});
+			res.end(data);
+		});
+	}else if(req.url == "/0.jpg"){
+		fs.readFile("./test/0.jpg",function(err,data){
+			//req表示请求，request;  res表示响应，response
+			//设置HTTP头部，状态码是200，文件类型是html，字符集是utf8
+			res.writeHead(200,{"Content-type":"image/jpg"});
+			res.end(data);
+		});
+	}else if(req.url == "/bbbbbb.css"){
+		fs.readFile("./test/aaaaaa.css",function(err,data){
+			//req表示请求，request;  res表示响应，response
+			//设置HTTP头部，状态码是200，文件类型是html，字符集是utf8
+			res.writeHead(200,{"Content-type":"text/css"});
+			res.end(data);
+		});
+	}else{
+		res.writeHead(404,{"Content-type":"text/html;charset=UTF-8"});
+		res.end("嘻嘻，没有这个页面呦");
+	}
+});
+
+//运行服务器，监听3000端口（端口号可以任改）
+server.listen(3000,"127.0.0.1");
+```
+ 分析：
+-
+ 返 回数据通过res.writeHead(状态码，请求头的内容)；
+html和文本
+> res.writeHead(200,{"Content-type":"text/html;charset=UTF-8"});
+
+图片
+> res.writeHead(200,{"Content-type":"image/jpg"});
+
+html
+> res.writeHead(200,{"Content-type":"text/css"});
+
+http的简单使用
+-
+```
+//这个案例简单讲解http模块
+//引用模块
+var http = require("http");
+
+//创建一个服务器，回调函数表示接收到请求之后做的事情
+var server = http.createServer(function(req,res){
+	//req参数表示请求，res表示响应
+	console.log("服务器接收到了请求" + req.url);
+	//设置头部
+	res.writeHead(200,{"Content-Type":"text/html;charset=UTF8"});
+	res.write("<h1>我是主标题</h1>");
+	res.write("<h2>我是2标题</h2>");
+	res.write("<h2>我是2标题</h2>");
+	res.write("<h2>我是2标题</h2>");
+	res.write("<h3>我是3标题</h3>");
+	res.end((1+2+3).toString());
+});
+
+//监听端口
+server.listen(3000,"127.0.0.1")
+```
+req的讲解
+-
+```
+var http = require("http");
+var server = http.createServer(function(req,res){
+	console.log(req.url);
+	res.end();
+});
+server.listen(3000,"127.0.0.1");
+```
+req.url:获取请求的路径
+url
+-
+```
+//url.parse()可以将一个完整的URL地址，分为很多部分：
+//host、port、pathname、path、query
+//url.parse()如果第二个参数是true，那么就可以将所有的查询变为对象
+//就可以直接打点得到这个参数
+var query = url.parse(req.url,true).query;
+//直接打点得到这个参数
+	var age = query.age;
+```
+
+获得url，进行截取，然后进行判断，是否和需要访问的地址进行比较
+
+地址处理
+-
+```
+fs.readFile("./test/1.txt",function(err,data)(
+	if(err){
+		throw err;
+	}
+	console.log("text");
+	res.end(data);
+));
+```
+火狐浏览器不处理图标
+-
+```
+if(req.url == "/favicon.ico"){
+	return;
+}
+```
+读取文件夹
+-
+```
+fs.readdir
+fs.readdir("./album",function(err,files){});
+遍历里面的files，将他的长度进行遍历，然后将其遍历出去
+for(var i = 0 ; i < files.length ;i++){
+	var thefilename = files[i];
+	//又要进行一次检测
+	console.log(wenjianjia);
+	});
+}
+将他们的值进行设置，拼接，然后判断路径的值
+fs.stat("./album/" + thefilename , function(err,stats){
+	//如果他是一个文件夹，那么输出它：
+	if(stats.isDirectory()){
+				wenjianjia.push(thefilename);
+	}
+使得是一个文件夹
+```
+写标签
+-
+```
+var http = require(http);
+var server = http.createServer(function(req,res){
+    if(req.url=="/"){
+        res.writeHead(200,{"Content-Type":"text/html;charset=UTF-8"});
+        res.write("<ul>");
+        res.write("<li>");
+        res.write("sss");
+        res.write("</li>");
+        res.write("</ul>");
+        res.end();
+    }
+});
+server.listen(3000,"127.0.0.1");
+```
+补充：截取字符串
+req.url.substr(0,9) == "/student/"
+**引入时间**
+```
+var sd = require("silly-datetime");
+//需要使用一个日期时间，格式为 20150920110632
+var ttt = sd.format(new Date(), 'YYYYMMDDHHmm');
+```
+**引入模块**
+```
+var bar = require("bar");  //在引用一个文件夹
+console.log(bar.msg);
+```
+**引入模块案例**
+```
+写一个模块，然后将方法暴露
+exports.showIndex = showIndex;
+exports.showStudent = showStudent;
+exports.show404 = show404;
+
+function showIndex(req,res){
+    res.writeHead(200,{"Content-Type":"text/html;charset=UTF8"});
+    res.end("我是首页");
+}
+
+function showStudent(req,res){
+    var id = req.url.substr(9,6);
+    res.writeHead(200,{"Content-Type":"text/html;charset=UTF8"});
+    res.end("我是学生页面" + id);
+}
+
+function show404(req,res){
+    res.writeHead(404,{"Content-Type":"text/html;charset=UTF8"});
+    res.end("404");
+}
+```
+调用 
+```
+var http = require("http");
+var router = require("./router.js");
+
+//创建服务器
+var server = http.createServer(function(req,res){
+    if(req.url == "/"){
+        router.showIndex(req,res);
+    }else if(req.url.substr(0,9) == "/student/"){
+        router.showStudent(req,res);
+    }else{
+        router.show404(req,res);
+    }
+});
+
+server.listen(80,"127.0.0.1");
+```
+**上传文件**
+```
+
+```
