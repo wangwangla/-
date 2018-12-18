@@ -1,0 +1,114 @@
+---
+title: 3.global
+user: 见贤思齐
+date: 2018-12-14
+---
+
+-windows命令:
+	+ cd
+	+ mkdir
+	+ dir 
+	+ 
+> global就等价于window对象
+
+## nodejs
+
+1.输出
+```
+	var a = 1;
+	// 此处的Console是NODE平台提供的
+	console.log(1);
+	console.error(new Error('error'));
+```
+2.node的信息
+```
+// var argv = process.argv;
+// console.log(argv);
+```
+3.获取传入的参数
+```
+去掉前两个参数
+命令行输入nide 文件名 参数
+var argvs = process.argv.slice(2);
+```
+4.switch
+```
+switch (argvs[0]) {
+  case 'init':
+    console.log('你需要INIT');
+    break;
+  case 'install':
+    var installPackageName = argvs[1];
+    console.log('你在安装' + installPackageName);
+    break;
+  case 'uninstall':
+    console.log('uninstall');
+    break;
+}
+```
+5.if
+```
+if( == 'init'){
+// 用户需要做初始化操作
+}else{
+}
+
+```
+6.标准输出
+```
+// process.stdout.write('hello node');
+// process.stdout.write('hello node');
+```
+7.函数的定义方法
+```
+var log1 = function(message){
+	process.stdout.write(message+'\n');
+}
+
+等价于
+var log2 = (messages)=>{
+	process.stdout.write(messages+'\n');
+}
+```
+8.摸版字符串
+```
+var msg = 'Hello';
+var a = 1;
+
+使用字符串
+process.stdout.write(`
+	${mag} word；
+`)
+```
+\`的作用是可以无限回车
+9.定时
+```
+执行的变量   变化的时间
+setInterval(render,1000/fps);
+```
+10.定义函数
+```
+	var render = > {
+		
+	}
+```
+.
+11.数组定义
+```
+var arr = [];
+数组的长度
+arr.length
+```
+12.清空控制台
+```
+process.stdout.write('\033[2J');
+process.stdout.write('\033[0f')
+```
+13.读取系统文件
+```
+var fs = require('fs');
+将文件读取出来
+frames[frames.length] = fs.readFileSync('./frame/XX'，‘编码格式’)；
+```
+14.nodejs为什么那么快
+
